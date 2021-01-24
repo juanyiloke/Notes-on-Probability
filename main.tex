@@ -28,14 +28,14 @@
 %
 % The Title, Author Name, Date, and abstract go here
 
-\title{Notes on Probability}
+\title{Notes on Probability, Reinforcement Learning, and Mathematical Concepts Encountered Through the ROP at Williams' Lab}
 \author{Juan Yi Loke}
 \date{\today}
 
 \maketitle
 
 
-\noindent \textbf{Author's Note:} These notes might contain errors or are incomplete. Use them at your own risk! Note that the notes are going to be all over the place and somewhat disorganized. I apologize for any confusion caused.
+\noindent \textbf{Author's Note:} These notes might contain errors or are incomplete. Use them at your own risk!
 
 
 %
@@ -61,109 +61,59 @@
 
 %------------------------------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------------------------------
-\section{Insert Topic}
+\section{Decision Theory}
 %------------------------------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------------------------------
 
-\subsection{State theorem}
+\subsection{What is Decision Theory?}
+To solve the problem of inference, we have four steps:
 
-\section{INSERT SECTION}
-% \label{sec:examples}
+\begin{enumerate}
+    \item Enumerate the possible states of nature $\theta_j$, discrete or continuous, as the case may be.
+    \item Assign prior probabilities $p(\theta_j\mid I)$ which represents whatever prior information $I$ we have about them. 
+    \item Assign sampling probabilities $p(E_i \mid \theta_j)$ which represent our prior knowledge about the mechanism of the measurement process yielding the possible data sets $E_i$.
+    \item Digest any additional evidence $E = E_1E_2.....$ by application of Bayes' Theorem, thus obtaining the posterior probabilities $p(\theta_j \mid EI)$. 
+\end{enumerate}
 
-% \subsection{How to Leave Comments}
+\noindent That is all we need to solve the inference problem. Now to solve the problem of decision, we add 3 more steps onto the problem of inference:
 
-% Comments can be added to the margins of the document using the \todo{Here's a comment in the margin!} todo command, as shown in the example on the right. You can also add inline comments:
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item Enumerate the possible decisions $D_i$.
+    \item Assign the loss function $L(D_i, \theta_j)$ that tells us what we want to accomplish.
+    \item Make that decision $D_i$, which minimizes the expected loss over the posterior probabilities for $\theta_j$.
+\end{enumerate}
 
-% \todo[inline, color=green!40]{This is an inline comment.}
+\noindent Note that a loss function is a function that maps an event or values of one or more variables onto a real number which represents some "cost" associated with the event. Any optimization problem seeks to minimize a loss function. In other domains, it can be called a reward function, profit function, utility function, fitness function, etv), in which case it is to be maximized. Maximization and minimization is fundamentally the same operation. 
 
-% \subsection{How to Include Figures}
+\section{Information Theory}
+This section is notes from the text 'Probability and Information' by David Applebaum.
+\subsection{A couple of things to note beforehand}
+I found this sub-chapter particularly insightful as it gives a nice overview of what math is all about.\\
 
-% First you have to upload the image file (JPEG, PNG or PDF) from your computer to writeLaTeX using the upload link the project menu. Then use the includegraphics command to include it in your document. Use the figure environment and the caption command to add a number and a caption to your figure. See the code for Figure \ref{fig:frog} in this section for an example.
+\noindent A mathematical theory is a systematic exposition of all the knolwedge we possess about a certain area. The essence of a mathematical theory is to begin with some basic definitions, called axioms, which describe the main mathematical objects we are investigating.\\
 
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% % Example of creating a figure
-% %
+\noindent We then use clear and precise logical arguments to deduce the properties of these objects. These new properties are usually announced in statements called theorems and the arguments that we use to convince ourselves of the validity of these theorems are proofs.\\
 
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.3\textwidth]{./images/frog.jpg}
-% \caption{\label{fig:frog}This frog was uploaded to writeLaTeX via the project menu.}
-% \end{figure}
+\noindent As the theory develops and we learn new concepts that are needed in addition to those given in the axioms, we introduce these new concepts as definitions.\\
 
-% %
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\noindent Some mathematical nomenclature for statements:
+\begin{enumerate}
+    \item Lemma - a minor technical result which serves as a stepping stone towards a theorem.
+    \item Proposition - in between a lemma and a theorem. Sometimes it indicates a theorem from a different branch of mathematics is needed so that it can be applied within the current theory. 
+    \item Corollary - A result which follows almost immediately from the theorem with very little argument. 
+\end{enumerate}
 
-
-
-% \subsection{How to Make Tables}
-
-% Use the table and tabular commands for basic tables --- see Table~\ref{tab:widgets}, for example.
-
-% \begin{table}
-% \centering
-% \begin{tabular}{l|r}
-% Item & Quantity \\\hline
-% Widgets & 42 \\
-% Gadgets & 13
-% \end{tabular}
-% \caption{\label{tab:widgets}An example table.}
-% \end{table}
-
-% \subsection{How to Write Mathematics}
-
-% \LaTeX{} is great at typesetting mathematics. Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-% $$S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-%       = \frac{1}{n}\sum_{i}^{n} X_i$$
-% denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
-
-% You can also create \texttt{aligned} equations as follows:
-% \begin{align}
-% &a^2 + b^2 = c^2,\\
-% &e^{i\theta} = \cos(\theta) + i\sin(\theta).
-% \end{align}
-
-% In the code, 
-% \begin{verbatim}
-% \begin{align}
-% &a^2 + b^2 = c^2,\\
-% &e^{i\theta} = \cos(\theta) + i\sin(\theta).
-% \end{align}
-% \end{verbatim}
-% the \texttt{\&} tells \LaTeX{} what you want to align.
+\subsection{Information Theory}
 
 
-% \subsection{How to Make Sections and Subsections}
+\section{Probability}
+Probability is a mathematical term used to investigate properties of mathematical models of chance phenomena, also called probabilistic models. 'Probability' does not exist out in the real world. However, the applications of the subject spread into every corner of science and modern life. It is the foundation of the science of statistics as well as of statistical mechanics. This section will give mathematical meaning to the concept of 'information' from the framework of probability. 
 
-% Use section and subsection commands to organize your document. \LaTeX{} handles all the formatting and numbering automatically. Use ref and label commands for cross-references.
 
-% \subsection{How to Make Lists}
-
-% You can make lists with automatic numbering \dots
-
-% \begin{enumerate}
-% \item Like this,
-% \item and like this.
-% \end{enumerate}
-% \dots or bullet points \dots
-% \begin{itemize}
-% \item Like this,
-% \item and like this.
-% \end{itemize}
-% \dots or with words and descriptions \dots
-% \begin{description}
-% \item[Word] Definition
-% \item[Concept] Explanation
-% \item[Idea] Text
-% \end{description}
-
-% We hope you find write\LaTeX\ useful, and please let us know if you have any feedback using the help menu above.
-
-%
-% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reinforcement Learning}
+\subsection{What I gathered from the IAI lab}
+Beforehand, we will consider what is called the Markov Decision Process (MDP). An MDP is an extension of Markov Chains
 
 
 \end{document}
